@@ -161,6 +161,13 @@ var UIController = (function() {
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
         },
         
+        deleteListItem: function(selectorID) {
+            
+            var el = document.getElementById(selectorID);
+            
+            document.getElementById(selectorID).parentNode.removeChild(el)
+        },
+        
         clearFields: function() {
             var fields, fieldsArr;
             
@@ -262,9 +269,11 @@ var controller = (function(budgetCtrl, UICtrl ) {
             // 1. delete the item from the data structure
             budgetCtrl.deleteItem(type, ID);
             
-            // 2. delete the item from the UI 
+            // 2. delete the item from the UI
+            UICtrl.deleteListItem(itemId);
             
             // 3. update and show new budget 
+            updateBudget();
         }
         
     };
